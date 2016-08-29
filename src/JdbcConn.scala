@@ -11,9 +11,9 @@ class JdbcConn{
     {
       Class.forName("oracle.jdbc.driver.OracleDriver");// 加载Oracle驱动程序
       System.out.println("开始尝试连接数据库！")
-      val url = "dbc:oracle:thin:@15.136.18.30:1521:snapall";// 127.0.0.1是本机地址，XE是精简版Oracle的默认数据库名
-      val user = "dsf";// 用户名,系统默认的账户名
-      val password = "dsf";// 你安装时选设置的密码
+      val url = "dbc:oracle:thin:@";// 127.0.0.1是本机地址，XE是精简版Oracle的默认数据库名
+      val user = "";// 用户名,系统默认的账户名
+      val password = "";// 你安装时选设置的密码
       con = DriverManager.getConnection(url, user, password);// 获取连接
       System.out.println("连接成功！")
       val sql = "select sysdate from dual";// 预编译语句，“？”代表参数
@@ -58,9 +58,9 @@ class JdbcConn{
     {
       Class.forName("oracle.jdbc.driver.OracleDriver");// 加载Oracle驱动程序
       System.out.println("开始尝试连接数据库！")
-      val url = "dbc:oracle:thin:@15.136.18.30:1521:snapall";// 127.0.0.1是本机地址，XE是精简版Oracle的默认数据库名
-      val user = "dsf";// 用户名,系统默认的账户名
-      val password = "dsf";// 你安装时选设置的密码
+      val url = "dbc:oracle:thin:@";// 127.0.0.1是本机地址，XE是精简版Oracle的默认数据库名
+      val user = "";// 用户名,系统默认的账户名
+      val password = "";// 你安装时选设置的密码
       con = DriverManager.getConnection(url, user, password);// 获取连接
       System.out.println("连接成功！")
       val sql = "select HPHM,JGSJ,CDFX,SBBH,CDBH,CLSD from sjkk_gcjl where "+
