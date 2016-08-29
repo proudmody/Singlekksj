@@ -1,18 +1,14 @@
 import java.util.Date
 import java.text.SimpleDateFormat
-import java.util.Timer
-import java.util.TimerTask
-
 import org.apache.hadoop.hbase.HBaseConfiguration
 import org.apache.hadoop.hbase.client.{Get, HBaseAdmin, HTable, Put, Result}
 import org.apache.hadoop.hbase.util.Bytes
-import org.apache.spark.sql.SQLContext
 import org.apache.spark.{SparkConf, SparkContext}
-
 import scala.collection.mutable.{ListBuffer, Map}
 import scala.math._
 
 object InfoExtract {
+  //距离计算
   def dis(x1:Double,y1:Double,x2:Double,y2:Double): Double =
   {
     val detaX = abs(x1 - x2)
@@ -20,6 +16,7 @@ object InfoExtract {
     val dis = ((detaX + detaY) * Pi *6371 / 180 )
     dis
   }
+  //求时间差
   def time_diff(s1:String,s2:String):Long ={
     val df1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
     //println(s1+"  "+s2)
@@ -56,6 +53,7 @@ object InfoExtract {
     val sqlContext = new org.apache.spark.sql.SQLContext(sc)
     import sqlContext.implicits._
     //pre-computation
+    //地址和设备信息预处理
     val location = sc.textFile("hdfs://linux1:9000/user/hadoop/xy2.txt")
     val sbxx = sc.textFile("hdfs://linux1:9000/user/hadoop/sbxx.txt")
     val sbbh_loc = location.map { i =>
@@ -173,7 +171,6 @@ object InfoExtract {
               get.addColumn(Bytes.toBytes("F1"), Bytes.toBytes("value"))
               val result = table.get(get)
               if (!result.isEmpty) {
-
                 var v:String = new String()
                 for (kv <- result.list) {
                   v = Bytes.toString(kv.getValue)
@@ -182,6 +179,7 @@ object InfoExtract {
                 val last_Rec = Record(ss(1),ss(2))
                 //compare the possibility
                 val speed = compute_speed(rec2Rec(info),last_Rec)
+                //判断条件
                 if ((speed>30) && (map.getOrElse((info.SBBH,last_Rec.sbbh),0.0)>3.0) ){
                   //write warning msg into hbase
                   val now = new Date()
