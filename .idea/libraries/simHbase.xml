@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="simHbase">
+    <CLASSES>
+      <root url="file://E:/lib/simHbase" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://E:/lib/simHbase" recursive="false" />
+  </library>
+</component>
