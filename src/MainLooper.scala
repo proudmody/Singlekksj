@@ -23,6 +23,7 @@ object Submit {
       else now = df1.parse(date)
       now.setSeconds(0)
       println(date+" "+ flag + " " + lastMinute + " " + now.getMinutes)
+      //每分钟提交一次SparkApp
       if ((flag && (lastMinute == 0)) || (abs(now.getMinutes - lastMinute) >= 1)) {
         val endMinute = now.getMinutes
         now.setMinutes(endMinute)

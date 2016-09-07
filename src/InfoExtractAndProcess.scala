@@ -7,7 +7,7 @@ import org.apache.spark.{SparkConf, SparkContext}
 import scala.collection.mutable.{ListBuffer, Map}
 import scala.math._
 
-object InfoExtract {
+object InfoExtractAndProcess {
   //距离计算
   def dis(x1:Double,y1:Double,x2:Double,y2:Double): Double =
   {

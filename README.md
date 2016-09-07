@@ -11,7 +11,9 @@ Fake plate Detection &amp; Trafic flow statistics,Using Spark
 * 详见Singlekksj/src/InfoExtract.scala中的dis函数。
 
 ##主要技术
-主要使用了`SparkSql` 和`SparkCore`库
+* 主要使用了`SparkSql` 和`SparkCore`库
+* 原计划使用Kafka+SparkStreaming的但是因内部网络边界权限问题放弃。
+
 ##关于
 * `DBlink信息删去了`
 * `没有数据`，这个项目就是拿来看看吧。
